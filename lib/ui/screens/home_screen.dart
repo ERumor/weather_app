@@ -47,87 +47,85 @@ class _HomeScreenState extends State<HomeScreen> {
                       CircularProgressIndicator(),
                     ]);
                   } else if (state is WeatherSuccess) {
-                    return SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 8),
-                          getWeatherIcon(state.weather.weatherConditionCode!),
-                          Temperature(
-                            temperature:
-                                state.weather.temperature!.celsius!.round(),
-                          ),
-                          WeatherConditions(
-                            weatherMain: state.weather.weatherMain!,
-                          ),
-                          const SizedBox(height: 5),
-                          Date(date: state.weather.date!),
-                          const SizedBox(height: 30),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Sunrise(sunrise: state.weather.sunrise!),
-                                  ],
-                                ),
-                              ),
-                              const VerticalDivider(
-                                thickness: 1,
-                                width: 50,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Sunset(sunset: state.weather.sunset!),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 5.0),
-                            child: Divider(
-                              color: Colors.grey,
+                    return SingleChildScrollView(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 8),
+                            getWeatherIcon(state.weather.weatherConditionCode!),
+                            Temperature(
+                              temperature:
+                                  state.weather.temperature!.celsius!.round(),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    MaxTemperature(
-                                      temperature: state
-                                          .weather.tempMax!.celsius!
-                                          .round(),
-                                    ),
-                                  ],
+                            WeatherConditions(
+                              weatherMain: state.weather.weatherMain!,
+                            ),
+                            const SizedBox(height: 5),
+                            Date(date: state.weather.date!),
+                            const SizedBox(height: 30),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Sunrise(sunrise: state.weather.sunrise!),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              const VerticalDivider(
-                                thickness: 1,
-                                width: 50,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    MinTemperature(
-                                      temperature: state
-                                          .weather.tempMin!.celsius!
-                                          .round(),
-                                    ),
-                                  ],
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Sunset(sunset: state.weather.sunset!),
+                                    ],
+                                  ),
                                 ),
+                              ],
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 5.0),
+                              child: Divider(
+                                color: Colors.grey,
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      MaxTemperature(
+                                        temperature: state
+                                            .weather.tempMax!.celsius!
+                                            .round(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      MinTemperature(
+                                        temperature: state
+                                            .weather.tempMin!.celsius!
+                                            .round(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   } else if (state is WeatherFailure) {
